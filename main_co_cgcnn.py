@@ -212,7 +212,7 @@ def train(train_loader, model, criterion, optimizer, epoch):
                     epoch, i, len(train_loader), batch_time=batch_time,
                     data_time=data_time, loss=losses, naive_loss=naive_losses)
                 )
-            print ('Cumulative R2 score: %f'%(metrics.r2_score(test_preds, test_targets)))
+            print ('Cumulative R2 score: %f'%(metrics.r2_score(test_targets, test_preds)))
 
 def validate(val_loader, model, criterion):
     batch_time = AverageMeter()
@@ -272,9 +272,9 @@ def validate(val_loader, model, criterion):
                     data_time=data_time, loss=losses, naive_loss=naive_losses)
                 )
 
-    print ('Cumulative R2 score: %f'%(metrics.r2_score(test_preds, test_targets)))
+    print ('Cumulative R2 score: %f'%(metrics.r2_score(test_targets, test_preds)))
 
-    return metrics.r2_score(test_preds, test_targets)
+    return metrics.r2_score(test_targets, test_preds)
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
